@@ -1,0 +1,42 @@
+[
+  {
+    "id": "t2_q1",
+    "tipologia": 2,
+    "dataset": "messy_retail",
+    "question": "cual es la media de amount",
+    "expected_tools": ["aggregate_metric"],
+    "check": {"evidence_key": "value", "expected": 228.4238, "tolerance": 1.0}
+  },
+  {
+    "id": "t2_q2",
+    "tipologia": 2,
+    "dataset": "messy_retail",
+    "question": "cuantos nulos hay en amount",
+    "expected_tools": ["null_report"],
+    "check": {"evidence_key": "n_null", "expected": 9, "tolerance": 0}
+  },
+  {
+    "id": "t2_q3",
+    "tipologia": 2,
+    "dataset": "messy_retail",
+    "question": "cuantos nulos hay en store_id",
+    "expected_tools": ["null_report"],
+    "check": {"evidence_key": "n_null", "expected": 6, "tolerance": 0}
+  },
+  {
+    "id": "t2_q4",
+    "tipologia": 2,
+    "dataset": "messy_retail",
+    "question": "describe el esquema de la tabla",
+    "expected_tools": ["describe_schema"],
+    "check": null
+  },
+  {
+    "id": "t2_q5",
+    "tipologia": 2,
+    "dataset": "messy_retail",
+    "question": "cual es el maximo de quantity",
+    "expected_tools": ["aggregate_metric"],
+    "check": {"evidence_key": "value", "expected": 8.0, "tolerance": 0.01}
+  }
+]

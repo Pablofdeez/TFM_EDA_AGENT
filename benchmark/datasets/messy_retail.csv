@@ -1,0 +1,31 @@
+transaction_date,store_id,category,amount,quantity,status
+2023-01-10,Store_A,Electronics,150.5,2.0,completed
+2023-02-15,Store_B,Clothing,89.0,1.0,completed
+not available,Store_C,,,,pending
+2023-04-01,,Food,45.2,3.0,completed
+N/A,Store_A,Electronics,320.0,5.0,
+2023-06-20,Store_B,,,,completed
+2023-07-11,,Clothing,210.5,4.0,pending
+2023-08-05,Store_C,Food,67.8,1.0,completed
+not available,Store_A,Electronics,,,completed
+2023-10-22,Store_B,Clothing,430.0,7.0,
+2023-11-30,Store_C,Food,125.3,2.0,completed
+2024-01-08,Store_A,,89.5,1.0,pending
+2024-02-14,,Electronics,,,completed
+not available,Store_B,Clothing,345.0,6.0,completed
+2024-04-19,Store_C,Food,78.2,1.0,pending
+2024-05-25,Store_A,Electronics,,,
+2024-06-13,Store_B,,560.0,8.0,completed
+N/A,Store_C,Clothing,230.1,3.0,completed
+2024-08-02,,Food,110.0,2.0,pending
+2024-09-17,Store_A,Electronics,,,completed
+2024-10-31,Store_B,Clothing,390.5,5.0,
+2024-11-11,,Food,175.0,3.0,completed
+not available,Store_C,,,,pending
+2025-01-05,Store_A,Electronics,290.0,4.0,completed
+2025-02-20,Store_B,Clothing,,,completed
+2025-03-15,Store_C,Food,440.0,6.0,
+N/A,Store_A,Electronics,85.3,1.0,pending
+2025-05-01,,Clothing,195.0,3.0,completed
+2025-06-10,Store_B,,,,completed
+2025-07-22,Store_C,Food,370.0,5.0,pending

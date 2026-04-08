@@ -1,0 +1,42 @@
+[
+  {
+    "id": "t1_q1",
+    "tipologia": 1,
+    "dataset": "clean_sales",
+    "question": "cual es la media de revenue",
+    "expected_tools": ["aggregate_metric"],
+    "check": {"evidence_key": "value", "expected": 1140.2083, "tolerance": 0.5}
+  },
+  {
+    "id": "t1_q2",
+    "tipologia": 1,
+    "dataset": "clean_sales",
+    "question": "cual es el maximo de units",
+    "expected_tools": ["aggregate_metric"],
+    "check": {"evidence_key": "value", "expected": 70.0, "tolerance": 0.01}
+  },
+  {
+    "id": "t1_q3",
+    "tipologia": 1,
+    "dataset": "clean_sales",
+    "question": "cuantos nulos hay en region",
+    "expected_tools": ["null_report"],
+    "check": {"evidence_key": "n_null", "expected": 2, "tolerance": 0}
+  },
+  {
+    "id": "t1_q4",
+    "tipologia": 1,
+    "dataset": "clean_sales",
+    "question": "que columnas tienen semantica de fecha",
+    "expected_tools": ["detect_datetime_columns"],
+    "check": null
+  },
+  {
+    "id": "t1_q5",
+    "tipologia": 1,
+    "dataset": "clean_sales",
+    "question": "cual fue el revenue maximo en 2024",
+    "expected_tools": ["detect_datetime_columns", "aggregate_metric"],
+    "check": {"evidence_key": "value", "expected": 1700.0, "tolerance": 0.01}
+  }
+]

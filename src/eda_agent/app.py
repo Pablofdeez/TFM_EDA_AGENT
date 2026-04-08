@@ -2,13 +2,12 @@
 app.py — Interfaz web con Streamlit para el agente EDA.
 
 En vez de interactuar por consola (REPL), este módulo levanta una interfaz
-web con un chat interactivo. El usuario puede subir un CSV desde el navegador,
-cargarlo como tabla y hacerle preguntas en lenguaje natural.
+web con un chat interactivo. El usuario sube un CSV desde el sidebar y
+se carga automáticamente. Después solo hace preguntas en el chat.
 
 El reto principal es que Streamlit re-ejecuta el script COMPLETO cada vez
-que el usuario interactúa (pulsa un botón, envía un mensaje, etc.).
-Pero nuestro agente necesita mantener el servidor MCP vivo entre preguntas
-(porque el TableStore con las tablas cargadas vive en ese subproceso).
+que el usuario interactúa. Pero nuestro agente necesita mantener el servidor
+MCP vivo entre preguntas (porque el TableStore vive en ese subproceso).
 
 La solución: un hilo background con su propio event loop de asyncio.
 - El hilo arranca el agente una sola vez (async with agent → MCP server vivo)
@@ -128,6 +127,25 @@ def render_answer(answer: EDAAnswer) -> None:
         st.warning(w)
 
 
+def auto_load_table(file_path: Path, table_name: str) -> None:
+    """Carga una tabla automáticamente cuando el usuario sube un fichero.
+
+    Llama al agente con load_table y guarda el resultado en session_state
+    para inyectar contexto en las preguntas siguientes.
+    """
+    with st.spinner(f"Cargando '{table_name}'..."):
+        try:
+            runner = get_runner()
+            answer = runner.ask(f"Carga {file_path} como {table_name}")
+            st.session_state.loaded_table = {
+                "name": table_name,
+                "evidence": answer.evidence,
+            }
+            st.success(f"Tabla '{table_name}' cargada — {answer.evidence.get('n_rows', '?')} filas, {answer.evidence.get('n_cols', '?')} columnas")
+        except Exception as e:
+            st.error(f"Error cargando tabla: {e}")
+
+
 # ---------------------------------------------------------------------------
 # Interfaz Streamlit
 # ---------------------------------------------------------------------------
@@ -138,36 +156,36 @@ st.caption("Análisis exploratorio de datos con lenguaje natural")
 
 # --- Sidebar: carga de datos e info ---
 with st.sidebar:
-    st.header("Cargar dataset")
+    st.header("Dataset")
 
-    uploaded = st.file_uploader("CSV o Parquet", type=["csv", "parquet"])
-    table_name = st.text_input("Nombre de la tabla", value="datos")
+    uploaded = st.file_uploader("Sube un CSV o Parquet", type=["csv", "parquet"])
 
-    if uploaded and st.button("Cargar tabla"):
-        # Guardamos el fichero en data/uploads/ para que el MCP server lo lea
-        UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-        save_path = UPLOAD_DIR / uploaded.name
-        save_path.write_bytes(uploaded.getvalue())
+    # Carga automática: cuando el usuario sube un fichero, se carga sin botón
+    # Usamos el nombre del fichero (sin extensión) como nombre de tabla
+    if uploaded:
+        # Comprobar si ya cargamos este fichero (evitar recargar en cada re-run)
+        file_key = f"loaded_{uploaded.name}"
+        if file_key not in st.session_state:
+            UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+            save_path = UPLOAD_DIR / uploaded.name
+            save_path.write_bytes(uploaded.getvalue())
 
-        with st.spinner("Cargando tabla..."):
-            try:
-                runner = get_runner()
-                answer = runner.ask(f"Carga {save_path} como {table_name}")
-                st.session_state.loaded_table = {
-                    "name": table_name,
-                    "evidence": answer.evidence,
-                }
-                st.success(f"Tabla '{table_name}' cargada")
-            except Exception as e:
-                st.error(f"Error cargando tabla: {e}")
+            # Nombre de tabla = nombre del fichero sin extensión
+            table_name = Path(uploaded.name).stem
+            auto_load_table(save_path, table_name)
+            st.session_state[file_key] = True
 
     # Mostrar info de la tabla activa
     if "loaded_table" in st.session_state:
         info = st.session_state.loaded_table
         st.divider()
         st.subheader(f"Tabla activa: {info['name']}")
+        cols = info.get("evidence", {}).get("columns", [])
+        if cols:
+            st.caption(f"Columnas: {', '.join(cols)}")
         if info.get("evidence"):
-            st.json(info["evidence"])
+            with st.expander("Detalle"):
+                st.json(info["evidence"])
 
     st.divider()
     model = os.getenv("OLLAMA_MODEL", "qwen3:8b")
@@ -192,12 +210,28 @@ if prompt := st.chat_input("Pregunta sobre tus datos..."):
     with st.chat_message("user"):
         st.markdown(prompt)
 
+    # Inyectar contexto de tabla activa en la pregunta del usuario.
+    # Esto es necesario porque cada agent.run() es una conversacion nueva:
+    # el LLM no recuerda entre preguntas que tabla tiene cargada.
+    # Añadimos el nombre y las columnas para que no invente ni intente recargar.
+    query = prompt
+    if "loaded_table" in st.session_state:
+        info = st.session_state.loaded_table
+        tabla = info["name"]
+        cols = info.get("evidence", {}).get("columns", [])
+        ctx = (
+            f"[Contexto: la tabla '{tabla}' ya esta cargada y activa "
+            f"con columnas: {', '.join(cols)}. "
+            f"NO necesitas usar load_table, usa directamente las otras tools.]"
+        )
+        query = f"{ctx} {prompt}"
+
     # Obtener respuesta del agente
     with st.chat_message("assistant"):
         with st.spinner("Analizando..."):
             try:
                 runner = get_runner()
-                answer = runner.ask(prompt)
+                answer = runner.ask(query)
             except Exception as e:
                 st.error(f"Error: {e}")
                 answer = None

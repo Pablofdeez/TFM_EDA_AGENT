@@ -1,0 +1,137 @@
+{
+  "timestamp": "20260406_173039",
+  "results": [
+    {
+      "id": "t1_q1",
+      "tipologia": 1,
+      "dataset": "clean_sales",
+      "question": "cual es la media de revenue",
+      "expected": 1140.2083,
+      "llm_raw": "To determine the **mean revenue**, we follow these steps:\n\n---\n\n### **Step 1: Identify the Data**\n\nWe are given a list o",
+      "llm_parsed": 1.0,
+      "value_match": false,
+      "latency_s": 51.04
+    },
+    {
+      "id": "t1_q2",
+      "tipologia": 1,
+      "dataset": "clean_sales",
+      "question": "cual es el maximo de units",
+      "expected": 70.0,
+      "llm_raw": "70",
+      "llm_parsed": 70.0,
+      "value_match": true,
+      "latency_s": 4.69
+    },
+    {
+      "id": "t1_q3",
+      "tipologia": 1,
+      "dataset": "clean_sales",
+      "question": "cuantos nulos hay en region",
+      "expected": 2,
+      "llm_raw": "2",
+      "llm_parsed": 2.0,
+      "value_match": true,
+      "latency_s": 7.83
+    },
+    {
+      "id": "t1_q5",
+      "tipologia": 1,
+      "dataset": "clean_sales",
+      "question": "cual fue el revenue maximo en 2024",
+      "expected": 1700.0,
+      "llm_raw": "1700.0",
+      "llm_parsed": 1700.0,
+      "value_match": true,
+      "latency_s": 13.69
+    },
+    {
+      "id": "t2_q1",
+      "tipologia": 2,
+      "dataset": "messy_retail",
+      "question": "cual es la media de amount",
+      "expected": 228.4238,
+      "llm_raw": "To calculate the **mean (average)** of the given values, we first identify the valid entries and then compute the sum an",
+      "llm_parsed": 1.0,
+      "value_match": false,
+      "latency_s": 45.36
+    },
+    {
+      "id": "t2_q2",
+      "tipologia": 2,
+      "dataset": "messy_retail",
+      "question": "cuantos nulos hay en amount",
+      "expected": 9,
+      "llm_raw": "8",
+      "llm_parsed": 8.0,
+      "value_match": false,
+      "latency_s": 11.79
+    },
+    {
+      "id": "t2_q3",
+      "tipologia": 2,
+      "dataset": "messy_retail",
+      "question": "cuantos nulos hay en store_id",
+      "expected": 6,
+      "llm_raw": "7",
+      "llm_parsed": 7.0,
+      "value_match": false,
+      "latency_s": 10.89
+    },
+    {
+      "id": "t2_q5",
+      "tipologia": 2,
+      "dataset": "messy_retail",
+      "question": "cual es el maximo de quantity",
+      "expected": 8.0,
+      "llm_raw": "8",
+      "llm_parsed": 8.0,
+      "value_match": true,
+      "latency_s": 9.48
+    },
+    {
+      "id": "t3_q1",
+      "tipologia": 3,
+      "dataset": "numeric_only",
+      "question": "cual es la media de temperature",
+      "expected": 21.4312,
+      "llm_raw": "21.6",
+      "llm_parsed": 21.6,
+      "value_match": true,
+      "latency_s": 8.74
+    },
+    {
+      "id": "t3_q2",
+      "tipologia": 3,
+      "dataset": "numeric_only",
+      "question": "cual es el maximo de humidity",
+      "expected": 64.5,
+      "llm_raw": "64.5",
+      "llm_parsed": 64.5,
+      "value_match": true,
+      "latency_s": 19.28
+    },
+    {
+      "id": "t3_q3",
+      "tipologia": 3,
+      "dataset": "numeric_only",
+      "question": "cual es el minimo de pressure",
+      "expected": 1009.0,
+      "llm_raw": "1009.0",
+      "llm_parsed": 1009.0,
+      "value_match": true,
+      "latency_s": 8.2
+    },
+    {
+      "id": "t3_q4",
+      "tipologia": 3,
+      "dataset": "numeric_only",
+      "question": "cuantos nulos hay en voltage",
+      "expected": 3,
+      "llm_raw": "3",
+      "llm_parsed": 3.0,
+      "value_match": true,
+      "latency_s": 6.71
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "timestamp": "20260406_172721",
+  "results": [
+    {
+      "id": "t1_q1",
+      "tipologia": 1,
+      "dataset": "clean_sales",
+      "question": "cual es la media de revenue",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 4.34,
+      "tools_used": [
+        "aggregate_metric"
+      ],
+      "answer_preview": "La media de la columna 'revenue' en la tabla 'clean_sales' es 1140.21 (calculada sobre 25 filas).",
+      "warnings": []
+    },
+    {
+      "id": "t1_q2",
+      "tipologia": 1,
+      "dataset": "clean_sales",
+      "question": "cual es el maximo de units",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 3.39,
+      "tools_used": [
+        "aggregate_metric"
+      ],
+      "answer_preview": "El máximo de unidades vendidas es de 70 unidades, registrado en 25 registros de la tabla.",
+      "warnings": []
+    },
+    {
+      "id": "t1_q3",
+      "tipologia": 1,
+      "dataset": "clean_sales",
+      "question": "cuantos nulos hay en region",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 4.52,
+      "tools_used": [
+        "null_report"
+      ],
+      "answer_preview": "La columna 'region' en la tabla 'clean_sales' tiene 2 registros nulos, lo que representa un 8% de los datos. Este porcen",
+      "warnings": []
+    },
+    {
+      "id": "t1_q4",
+      "tipologia": 1,
+      "dataset": "clean_sales",
+      "question": "que columnas tienen semantica de fecha",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": null,
+      "latency_s": 4.53,
+      "tools_used": [
+        "detect_datetime_columns"
+      ],
+      "answer_preview": "La columna 'date' tiene semántica de fecha en la tabla 'clean_sales'.",
+      "warnings": []
+    },
+    {
+      "id": "t1_q5",
+      "tipologia": 1,
+      "dataset": "clean_sales",
+      "question": "cual fue el revenue maximo en 2024",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 12.65,
+      "tools_used": [
+        "detect_datetime_columns",
+        "aggregate_metric"
+      ],
+      "answer_preview": "El revenue máximo en 2024 fue de 1700.0. Esta cifra corresponde a 12 registros analizados en el rango de fechas especifi",
+      "warnings": []
+    },
+    {
+      "id": "t2_q1",
+      "tipologia": 2,
+      "dataset": "messy_retail",
+      "question": "cual es la media de amount",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 6.12,
+      "tools_used": [
+        "aggregate_metric"
+      ],
+      "answer_preview": "La media del campo 'amount' en la tabla 'messy_retail' es 228.42, calculada sobre 30 registros.",
+      "warnings": []
+    },
+    {
+      "id": "t2_q2",
+      "tipologia": 2,
+      "dataset": "messy_retail",
+      "question": "cuantos nulos hay en amount",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 7.74,
+      "tools_used": [
+        "null_report"
+      ],
+      "answer_preview": "La columna 'amount' tiene 9 valores nulos, lo que representa un 0.3% del total de registros.",
+      "warnings": []
+    },
+    {
+      "id": "t2_q3",
+      "tipologia": 2,
+      "dataset": "messy_retail",
+      "question": "cuantos nulos hay en store_id",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 3.88,
+      "tools_used": [
+        "null_report"
+      ],
+      "answer_preview": "La columna 'store_id' tiene 6 valores nulos, lo que representa el 20% de los datos.",
+      "warnings": []
+    },
+    {
+      "id": "t2_q4",
+      "tipologia": 2,
+      "dataset": "messy_retail",
+      "question": "describe el esquema de la tabla",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": null,
+      "latency_s": 10.07,
+      "tools_used": [
+        "describe_schema"
+      ],
+      "answer_preview": "El esquema de la tabla 'messy_retail' contiene 30 registros y 6 columnas:\n\n1. **transaction_date** (object): 3 valores n",
+      "warnings": []
+    },
+    {
+      "id": "t2_q5",
+      "tipologia": 2,
+      "dataset": "messy_retail",
+      "question": "cual es el maximo de quantity",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 5.16,
+      "tools_used": [
+        "aggregate_metric"
+      ],
+      "answer_preview": "El valor máximo de la columna 'quantity' en la tabla 'messy_retail' es 8.0.",
+      "warnings": []
+    },
+    {
+      "id": "t3_q1",
+      "tipologia": 3,
+      "dataset": "numeric_only",
+      "question": "cual es la media de temperature",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 5.25,
+      "tools_used": [
+        "aggregate_metric"
+      ],
+      "answer_preview": "La media de la columna 'temperature' en la tabla 'numeric_only' es 21.43° (calculada sobre 20 registros).",
+      "warnings": []
+    },
+    {
+      "id": "t3_q2",
+      "tipologia": 3,
+      "dataset": "numeric_only",
+      "question": "cual es el maximo de humidity",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 4.69,
+      "tools_used": [
+        "aggregate_metric"
+      ],
+      "answer_preview": "El valor máximo de humedad en la tabla 'numeric_only' es 64.5.",
+      "warnings": []
+    },
+    {
+      "id": "t3_q3",
+      "tipologia": 3,
+      "dataset": "numeric_only",
+      "question": "cual es el minimo de pressure",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 5.39,
+      "tools_used": [
+        "aggregate_metric"
+      ],
+      "answer_preview": "El valor mínimo de la columna 'pressure' en la tabla 'numeric_only' es 1009.0.",
+      "warnings": []
+    },
+    {
+      "id": "t3_q4",
+      "tipologia": 3,
+      "dataset": "numeric_only",
+      "question": "cuantos nulos hay en voltage",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": true,
+      "latency_s": 7.39,
+      "tools_used": [
+        "null_report"
+      ],
+      "answer_preview": "La columna 'voltage' tiene 3 valores nulos, lo que representa el 15% de los datos.",
+      "warnings": []
+    },
+    {
+      "id": "t3_q5",
+      "tipologia": 3,
+      "dataset": "numeric_only",
+      "question": "describe el esquema",
+      "status": "OK",
+      "structural_valid": true,
+      "correct_tool": true,
+      "value_match": null,
+      "latency_s": 9.53,
+      "tools_used": [
+        "describe_schema"
+      ],
+      "answer_preview": "El esquema de la tabla 'numeric_only' contiene 5 columnas con las siguientes características:\n\n1. **sensor_id**: Entero ",
+      "warnings": []
+    }
+  ]
+}

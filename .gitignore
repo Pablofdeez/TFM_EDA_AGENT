@@ -20,3 +20,11 @@ data/uploads/
 # OS
 Thumbs.db
 .DS_Store
+
+# Claude Code memoria local
+.claude/
+SESSION_NOTES*.md
+
+# Documentos Word del TFM (binarios grandes, se guardan fuera del repo)
+doc/
+generate_defense_doc.py

@@ -43,19 +43,22 @@ def build_agent() -> Agent:
     """
     model = build_ollama_model()
 
-    # El servidor MCP se lanza como módulo Python (-m) para que los imports
-    # relativos funcionen correctamente
+    # Lanzamos el servidor MCP como modulo Python (-m) para que los imports
+    # relativos dentro de mcp_servers/ funcionen correctamente.
+    # sys.executable garantiza que usamos el mismo Python del entorno virtual.
     mcp_server = MCPServerStdio(
         sys.executable,
         args=["-m", "mcp_servers.eda_tools.server"],
         timeout=60,
     )
 
+    # output_type=EDAAnswer obliga al LLM a devolver siempre JSON valido
+    # que se parsea y valida con Pydantic. Si la respuesta no encaja, falla.
     return Agent(
         model=model,
-        output_type=EDAAnswer,       # Fuerza structured output validado con Pydantic
-        system_prompt=SYSTEM_PROMPT,  # Instrucciones de comportamiento del agente
-        mcp_servers=[mcp_server],     # Tools disponibles vía MCP
+        output_type=EDAAnswer,       # structured output validado con Pydantic
+        system_prompt=SYSTEM_PROMPT,  # instrucciones de comportamiento del agente
+        mcp_servers=[mcp_server],     # tools disponibles via MCP
     )
 
 

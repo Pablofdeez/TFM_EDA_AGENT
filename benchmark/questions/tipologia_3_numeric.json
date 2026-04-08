@@ -1,0 +1,42 @@
+[
+  {
+    "id": "t3_q1",
+    "tipologia": 3,
+    "dataset": "numeric_only",
+    "question": "cual es la media de temperature",
+    "expected_tools": ["aggregate_metric"],
+    "check": {"evidence_key": "value", "expected": 21.4312, "tolerance": 0.5}
+  },
+  {
+    "id": "t3_q2",
+    "tipologia": 3,
+    "dataset": "numeric_only",
+    "question": "cual es el maximo de humidity",
+    "expected_tools": ["aggregate_metric"],
+    "check": {"evidence_key": "value", "expected": 64.5, "tolerance": 0.01}
+  },
+  {
+    "id": "t3_q3",
+    "tipologia": 3,
+    "dataset": "numeric_only",
+    "question": "cual es el minimo de pressure",
+    "expected_tools": ["aggregate_metric"],
+    "check": {"evidence_key": "value", "expected": 1009.0, "tolerance": 0.01}
+  },
+  {
+    "id": "t3_q4",
+    "tipologia": 3,
+    "dataset": "numeric_only",
+    "question": "cuantos nulos hay en voltage",
+    "expected_tools": ["null_report"],
+    "check": {"evidence_key": "n_null", "expected": 3, "tolerance": 0}
+  },
+  {
+    "id": "t3_q5",
+    "tipologia": 3,
+    "dataset": "numeric_only",
+    "question": "describe el esquema",
+    "expected_tools": ["describe_schema"],
+    "check": null
+  }
+]
